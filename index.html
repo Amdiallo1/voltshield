@@ -1,0 +1,621 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="VoltShield Compliance - Ensuring Electrical Safety and Code Compliance for Commercial & Multi-Family Properties" />
+<title>VoltShield Compliance | Electrical Safety Standards & Inspection Services</title>
+<style>
+  /* Reset & base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #222;
+    background: #f8f9fa;
+    line-height: 1.6;
+  }
+  a {
+    color: #0072ff;
+    text-decoration: none;
+  }
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+  }
+  h1, h2, h3, h4 {
+    margin: 0 0 0.5em;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+  p {
+    margin: 0 0 1em;
+  }
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 3rem;
+  }
+
+  /* Hero Section */
+  header.hero {
+    background: linear-gradient(135deg, #0057b8 0%, #0091ff 100%);
+    color: #fff;
+    padding: 3rem 1.5rem 4rem;
+    text-align: center;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+  header.hero h1 {
+    font-size: 2.75rem;
+    max-width: 700px;
+    margin: 0 auto 1rem;
+    line-height: 1.1;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  }
+  header.hero p {
+    font-size: 1.125rem;
+    max-width: 520px;
+    margin: 0 auto 2rem;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  header.hero .btn-primary {
+    background-color: #ff6600;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 1.125rem;
+    padding: 0.85rem 2.25rem;
+    border-radius: 35px;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(255, 102, 0, 0.5);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+    user-select: none;
+  }
+  header.hero .btn-primary:hover,
+  header.hero .btn-primary:focus {
+    background-color: #e65500;
+    box-shadow: 0 8px 20px rgba(230, 85, 0, 0.7);
+    outline-offset: 2px;
+  }
+  
+  /* Section Titles */
+  .section-title {
+    font-size: 1.875rem;
+    text-align: center;
+    margin: 3rem 0 1.5rem 0;
+    color: #003366;
+  }
+
+  /* Services Section */
+  section.services {
+    background: white;
+    padding: 3rem 1.5rem 4rem;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgb(0 0 0 / 0.05);
+  }
+  .services-list {
+    display: grid;
+    gap: 1.75rem 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    margin-top: 1.5rem;
+  }
+  .service-card {
+    border: 1px solid #dddfe2;
+    border-radius: 8px;
+    padding: 1.5rem 1.25rem;
+    background: #fafafa;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.25s ease;
+  }
+  .service-card:hover,
+  .service-card:focus-within {
+    box-shadow: 0 6px 18px rgb(0 0 0 / 0.12);
+  }
+  .service-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.75rem;
+    fill: #0072ff;
+  }
+  .service-card h3 {
+    margin-bottom: 0.5rem;
+    color: #004a99;
+  }
+  .service-card p {
+    flex-grow: 1;
+    font-size: 0.95rem;
+    color: #444;
+  }
+
+  /* Booking Form Section */
+  section.booking {
+    background: white;
+    margin: 3rem 0 4rem;
+    border-radius: 8px;
+    box-shadow: 0 0 16px rgb(0 0 0 / 0.07);
+    padding: 2.5rem 2rem 3rem;
+  }
+  .booking h2 {
+    text-align: center;
+    color: #003366;
+  }
+  form#bookingForm {
+    max-width: 550px;
+    margin: 1.25rem auto 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 1rem;
+  }
+  form#bookingForm label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #222;
+  }
+  form#bookingForm input,
+  form#bookingForm select,
+  form#bookingForm textarea {
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    border: 1.8px solid #cbd3dc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.22s ease;
+    font-family: inherit;
+    resize: vertical;
+  }
+  form#bookingForm input:focus,
+  form#bookingForm select:focus,
+  form#bookingForm textarea:focus {
+    border-color: #0072ff;
+    outline: none;
+    box-shadow: 0 0 5px #7ab7ff88;
+  }
+  form#bookingForm textarea {
+    grid-column: 1 / -1;
+    min-height: 90px;
+  }
+  form#bookingForm .full-width {
+    grid-column: 1 / -1;
+  }
+  form#bookingForm button[type="submit"] {
+    grid-column: 1 / -1;
+    background: #0072ff;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 40px;
+    padding: 0.85rem 0;
+    cursor: pointer;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+    box-shadow: 0 6px 15px rgb(0 114 255 / 0.5);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  form#bookingForm button[type="submit"]:hover,
+  form#bookingForm button[type="submit"]:focus {
+    background: #005ec8;
+    box-shadow: 0 8px 20px rgb(0 94 200 / 0.75);
+    outline-offset: 2px;
+  }
+  form#bookingForm .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  form#bookingForm .form-message {
+    grid-column: 1 / -1;
+    font-size: 0.9rem;
+    color: #d93025;
+    margin-top: -0.6rem;
+    margin-bottom: 0.8rem;
+    display: none;
+  }
+  form#bookingForm .form-success {
+    grid-column: 1 / -1;
+    background: #d4edda;
+    color: #155724;
+    border-radius: 6px;
+    padding: 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    display: none;
+  }
+
+  /* Trust Badges Section */
+  section.trust {
+    max-width: 1100px;
+    margin: 0 auto 4rem;
+    padding: 0 1.5rem;
+  }
+  .trust-badges {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2.5rem 3rem;
+    align-items: center;
+  }
+  .badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 140px;
+    text-align: center;
+    color: #003366;
+  }
+  .badge svg {
+    width: 72px;
+    height: 72px;
+    fill: #0072ff;
+    margin-bottom: 0.35rem;
+    flex-shrink: 0;
+  }
+  .badge span {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  /* Responsive Layout Tweaks */
+  @media (max-width: 600px) {
+    header.hero h1 {
+      font-size: 1.9rem;
+      max-width: 90vw;
+      line-height: 1.2;
+    }
+    header.hero p {
+      font-size: 1rem;
+      max-width: 90vw;
+    }
+    form#bookingForm {
+      grid-template-columns: 1fr;
+    }
+    form#bookingForm textarea {
+      min-height: 110px;
+    }
+  }
+</style>
+</head>
+<body>
+<header class="hero" role="banner">
+  <main>
+    <h1>VoltShield Compliance</h1>
+    <p>Your Trusted Partner in Electrical Safety Standards & Compliance Inspections</p>
+    <button class="btn-primary" id="bookNowBtn" aria-label="Book an Inspection Now">Book an Inspection Now</button>
+  </main>
+</header>
+
+<main role="main" aria-labelledby="servicesTitle">
+
+  <section class="services" aria-labelledby="servicesTitle" tabindex="-1">
+    <h2 id="servicesTitle" class="section-title">Our Compliance Services</h2>
+    <div class="services-list">
+      
+      <article class="service-card" tabindex="0" aria-labelledby="serviceVisTitle" role="region">
+        <svg aria-hidden="true" class="service-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" >
+          <path d="M33.3 13a19.8 19.8 0 1 1-18 17.7L9.3 20 7 23l8 12 11.7-8-3.3-6.7Z"/>
+        </svg>
+        <h3 id="serviceVisTitle">Visual Electrical Panel Inspections</h3>
+        <p>Thorough physical assessments verifying panel integrity, correct labeling, clearance, and wire conditions.</p>
+      </article>
+
+      <article class="service-card" tabindex="0" aria-labelledby="serviceThermalTitle" role="region">
+        <svg aria-hidden="true" class="service-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" >
+          <path d="M32 4a28 28 0 1 0 24.8 39.7l-7.4-4.8a17.5 17.5 0 1 1-31.3-17.7l-8.4-7A28 28 0 0 0 32 4Z"/>
+        </svg>
+        <h3 id="serviceThermalTitle">Infrared Thermal Mapping</h3>
+        <p>Identify hotspots and temperature gradients to detect overloads and poor connections using advanced IR imaging.</p>
+      </article>
+
+      <article class="service-card" tabindex="0" aria-labelledby="serviceBreakerTitle" role="region">
+        <svg aria-hidden="true" class="service-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" >
+          <path d="M18 44v-8h28v8H18Zm-1-12v-8h30v8H17Zm14-16v-6h2v6h-2Z"/>
+        </svg>
+        <h3 id="serviceBreakerTitle">Breaker Loading & Load Analysis</h3>
+        <p>Measure current loads, evaluate breaker capacity, and analyze harmonics for safe electrical distributions.</p>
+      </article>
+
+      <article class="service-card" tabindex="0" aria-labelledby="serviceComprehensiveTitle" role="region">
+        <svg aria-hidden="true" class="service-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" >
+          <path d="M12 12h40v40H12z" stroke="#0072FF" stroke-width="3" fill="none"/>
+          <path d="M32 20v24M20 32h24" stroke="#0072FF" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <h3 id="serviceComprehensiveTitle">Comprehensive Inspection Package</h3>
+        <p>Combining all services: visual, thermal, electrical load analysis for complete code compliance assurance.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="booking" aria-labelledby="bookingTitle" tabindex="-1">
+    <h2 id="bookingTitle" class="section-title">Schedule Your Compliance Inspection</h2>
+    <form id="bookingForm" novalidate aria-describedby="formInstructions" aria-live="polite" aria-atomic="true">
+      <div id="formInstructions" class="sr-only">All fields are required except Notes. Please fill out the form below to book your inspection.</div>
+      <div class="form-success" id="formSuccess" role="alert" aria-live="assertive"></div>
+
+      <div class="form-group">
+        <label for="fullName">Full Name *</label>
+        <input type="text" id="fullName" name="fullName" placeholder="Your Full Name" autocomplete="name" required aria-required="true" aria-describedby="fullNameError" />
+        <span id="fullNameError" class="form-message" aria-live="polite"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address *</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required aria-required="true" aria-describedby="emailError" />
+        <span id="emailError" class="form-message" aria-live="polite"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number *</label>
+        <input type="tel" id="phone" name="phone" placeholder="+1 555 123 4567" autocomplete="tel" required aria-required="true" pattern="^\+?[\d\s\-().]{7,}$" aria-describedby="phoneError" />
+        <span id="phoneError" class="form-message" aria-live="polite"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="inspectionType">Inspection Type *</label>
+        <select id="inspectionType" name="inspectionType" required aria-required="true" aria-describedby="inspectionTypeError">
+          <option value="" disabled selected>Select inspection service</option>
+          <option value="visual">Visual Electrical Panel Inspection</option>
+          <option value="thermal">Infrared Thermal Mapping</option>
+          <option value="breaker">Breaker Loading & Load Analysis</option>
+          <option value="comprehensive">Comprehensive Inspection Package</option>
+        </select>
+        <span id="inspectionTypeError" class="form-message" aria-live="polite"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="propertyType">Property Type *</label>
+        <select id="propertyType" name="propertyType" required aria-required="true" aria-describedby="propertyTypeError">
+          <option value="" disabled selected>Select property type</option>
+          <option value="multi-family">Multi-Family Rentals</option>
+          <option value="commercial-warehouse">Commercial Warehouse</option>
+          <option value="other">Other</option>
+        </select>
+        <span id="propertyTypeError" class="form-message" aria-live="polite"></span>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="preferredDate">Preferred Inspection Date *</label>
+        <input type="date" id="preferredDate" name="preferredDate" required aria-required="true" aria-describedby="preferredDateError" min="" />
+        <span id="preferredDateError" class="form-message" aria-live="polite"></span>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="notes">Additional Notes / Instructions</label>
+        <textarea id="notes" name="notes" placeholder="Any additional info or questions..."></textarea>
+      </div>
+
+      <button type="submit" aria-label="Submit booking form">Submit Booking</button>
+    </form>
+  </section>
+
+  <section class="trust" aria-labelledby="trustTitle" tabindex="-1">
+    <h2 id="trustTitle" class="section-title">Our Trusted Safety & Compliance Standards</h2>
+    <div class="trust-badges" role="list">
+
+      <div class="badge" role="listitem" tabindex="0" aria-label="OSHA Certified">
+        <svg viewBox="0 0 64 64" aria-hidden="true" >
+          <circle cx="32" cy="32" r="30" stroke="#0072ff" stroke-width="4" fill="none"/>
+          <path fill="#0072ff" d="M20 32h5v9h6v-9h5l-8-9-8 9z"/>
+        </svg>
+        <span>OSHA Certified</span>
+      </div>
+
+      <div class="badge" role="listitem" tabindex="0" aria-label="NICET Licensed Inspectors">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="18" y="14" width="28" height="36" rx="6" ry="6" fill="#0072ff"/>
+          <circle cx="32" cy="34" r="10" fill="#f0f7ff"/>
+          <path fill="#0072ff" d="M27 39h10v4H27v-4z"/>
+        </svg>
+        <span>NICET Licensed Inspectors</span>
+      </div>
+
+      <div class="badge" role="listitem" tabindex="0" aria-label="NFPA 70E Compliant">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <polygon points="16 48 48 48 48 16 16 16" fill="#0072ff"/>
+          <path fill="#f0f7ff" d="M24 24h16v16H24z"/>
+          <path d="M24 24 L40 40" stroke="#0072ff" stroke-width="3"/>
+          <path d="M40 24 L24 40" stroke="#0072ff" stroke-width="3"/>
+        </svg>
+        <span>NFPA 70E Compliant</span>
+      </div>
+
+      <div class="badge" role="listitem" tabindex="0" aria-label="National Electrical Code (NEC) Standards">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="28" fill="#0072ff"/>
+          <path d="M18 38h28v4H18v-4zm0-12h28v4H18v-4z" fill="#f0f7ff"/>
+          <path d="M22 26h20v2H22v-2z" fill="#f0f7ff"/>
+        </svg>
+        <span>NEC Standards</span>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Set minimum date to today for preferredDate input
+  const dateInput = document.getElementById('preferredDate');
+  const todayISOString = new Date().toISOString().split('T')[0];
+  dateInput.setAttribute('min', todayISOString);
+
+  // Booking Form Validation & Submission
+  const form = document.getElementById('bookingForm');
+  const successMsg = document.getElementById('formSuccess');
+  const inputs = {
+    fullName: form.fullName,
+    email: form.email,
+    phone: form.phone,
+    inspectionType: form.inspectionType,
+    propertyType: form.propertyType,
+    preferredDate: form.preferredDate
+  };
+  const errors = {
+    fullName: document.getElementById('fullNameError'),
+    email: document.getElementById('emailError'),
+    phone: document.getElementById('phoneError'),
+    inspectionType: document.getElementById('inspectionTypeError'),
+    propertyType: document.getElementById('propertyTypeError'),
+    preferredDate: document.getElementById('preferredDateError')
+  };
+
+  function validateName(name) {
+    return typeof name === 'string' && name.trim().length >= 3;
+  }
+  function validateEmail(email) {
+    // Simple email regex
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+  function validatePhone(phone) {
+    // Basic pattern to accept digits, spaces, (), +, -
+    return /^\+?[\d\s\-().]{7,}$/.test(phone);
+  }
+  function validateSelect(value) {
+    return value !== "";
+  }
+  function validateDate(dateVal) {
+    if (!dateVal) return false;
+    const date = new Date(dateVal + "T00:00:00");
+    const now = new Date();
+    now.setHours(0,0,0,0);
+    return date >= now;
+  }
+
+  function clearErrors() {
+    Object.values(errors).forEach(span => {
+      span.textContent = '';
+      span.style.display = 'none';
+    });
+    successMsg.style.display = 'none';
+    successMsg.textContent = '';
+  }
+
+  function showError(field, message) {
+    errors[field].textContent = message;
+    errors[field].style.display = 'block';
+    inputs[field].setAttribute('aria-invalid', 'true');
+  }
+
+  function clearError(field) {
+    errors[field].textContent = '';
+    errors[field].style.display = 'none';
+    inputs[field].removeAttribute('aria-invalid');
+  }
+
+  function validateField(field) {
+    const val = inputs[field].value.trim();
+
+    switch(field) {
+      case 'fullName':
+        if (!validateName(val)) {
+          showError(field, 'Please enter your full name (at least 3 characters).');
+          return false;
+        }
+        break;
+      case 'email':
+        if (!validateEmail(val)) {
+          showError(field, 'Please enter a valid email address.');
+          return false;
+        }
+        break;
+      case 'phone':
+        if (!validatePhone(val)) {
+          showError(field, 'Please enter a valid phone number.');
+          return false;
+        }
+        break;
+      case 'inspectionType':
+      case 'propertyType':
+        if (!validateSelect(val)) {
+          showError(field, 'Please select an option.');
+          return false;
+        }
+        break;
+      case 'preferredDate':
+        if (!validateDate(val)) {
+          showError(field, 'Please select a valid date (today or later).');
+          return false;
+        }
+        break;
+    }
+    clearError(field);
+    return true;
+  }
+
+  // Real-time validation listeners
+  Object.keys(inputs).forEach(field => {
+    inputs[field].addEventListener('input', () => {
+      validateField(field);
+    });
+    inputs[field].addEventListener('blur', () => {
+      validateField(field);
+    });
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    clearErrors();
+
+    // Validate all fields
+    let allValid = true;
+    for (const field of Object.keys(inputs)) {
+      if(!validateField(field)) {
+        allValid = false;
+      }
+    }
+    if(!allValid) {
+      // Focus first invalid field
+      for(const field of Object.keys(inputs)) {
+        if(inputs[field].getAttribute('aria-invalid') === 'true') {
+          inputs[field].focus();
+          break;
+        }
+      }
+      return;
+    }
+
+    // Simulate submission & success message
+    successMsg.textContent = 'Thank you! Your booking request has been received. We will contact you shortly.';
+    successMsg.style.display = 'block';
+    form.reset();
+
+    // Reset min date after reset
+    dateInput.setAttribute('min', todayISOString);
+    inputs.fullName.focus();
+  });
+
+  // Scroll to form on "Book Now" button click
+  const btnBookNow = document.getElementById('bookNowBtn');
+  btnBookNow.addEventListener('click', () => {
+    document.getElementById('bookingTitle').focus();
+    document.getElementById('bookingTitle').scrollIntoView({behavior:'smooth'});
+  });
+
+  // Accessibility: hide elements for screen readers only
+  // Style class definition
+  const style = document.createElement('style');
+  style.textContent = `.sr-only {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap;
+    border: 0;
+  }`;
+  document.head.appendChild(style);
+</script>
+</body>
+</html>
+```
