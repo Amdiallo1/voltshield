@@ -1,588 +1,538 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="VoltShield Compliance - Ensuring Electrical Safety & Code Compliance for Commercial & Multi-Family Properties">
-    <title>VoltShield Compliance | Electrical Safety Standards & Inspection Services</title>
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        /* CSS variables for consistent design tokens */
-        :root {
-            --bg-darkest: #070a13;
-            --bg-darker: #0d1222;
-            --bg-card: #131b2e;
-            --border-color: #1e293b;
-            --primary: #3b82f6;
-            --primary-hover: #2563eb;
-            --text-light: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-glow: rgba(59, 130, 246, 0.15);
-            --font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>VoltShield Compliance - Electrical Safety Standards</title>
+<style>
+  :root {
+    --clr-primary: #005bbb;
+    --clr-primary-light: #2680eb;
+    --clr-primary-dark: #003f7f;
+    --clr-secondary: #ff7f50;
+    --clr-gray-light: #f7f9fc;
+    --clr-gray-medium: #7a869a;
+    --clr-gray-dark: #2c3e50;
+    --clr-white: #fff;
+    --clr-danger: #e74c3c;
+    --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --max-width: 1200px;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    background-color: var(--clr-gray-light);
+    color: var(--clr-gray-dark);
+    line-height: 1.6;
+  }
+  a {
+    color: var(--clr-primary-light);
+    text-decoration: none;
+  }
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+  }
+  main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1rem 3rem;
+  }
 
-        /* Reset & Base styling */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        html {
-            font-size: 16px;
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: var(--font-family);
-            color: var(--text-muted);
-            background-color: var(--bg-darkest);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
+  /* Hero Section */
+  header.hero {
+    background: linear-gradient(135deg, var(--clr-primary-dark) 0%, var(--clr-primary) 100%);
+    color: var(--clr-white);
+    padding: 4rem 1rem 5rem;
+    text-align: center;
+  }
+  header.hero h1 {
+    font-size: 2.75rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  header.hero p.subtitle {
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    line-height: 1.4;
+  }
+  header.hero .btn-primary {
+    display: inline-block;
+    background-color: var(--clr-secondary);
+    color: var(--clr-white);
+    font-weight: 600;
+    padding: 0.85rem 2.5rem;
+    border-radius: 40px;
+    font-size: 1.125rem;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 6px 12px rgb(255 127 80 / 0.4);
+    user-select: none;
+  }
+  header.hero .btn-primary:hover,
+  header.hero .btn-primary:focus {
+    background-color: #ff5722;
+    outline: none;
+  }
 
-        /* Utility Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+  /* Services Section */
+  section.services {
+    background-color: var(--clr-white);
+    padding: 3rem 1rem 2rem;
+    margin-top: -3.5rem;
+    border-radius: 12px;
+    box-shadow: 0 16px 40px rgb(38 128 235 / 0.15);
+  }
+  section.services h2 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--clr-primary-dark);
+  }
+  .services-grid {
+    display: grid;
+    gap: 2rem 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  .service-card {
+    background: var(--clr-gray-light);
+    border-radius: 12px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: 0 4px 12px rgb(44 62 80 / 0.07);
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .service-card:hover,
+  .service-card:focus-within {
+    box-shadow: 0 8px 24px rgb(38 128 235 / 0.3);
+  }
+  .service-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    color: var(--clr-primary-dark);
+  }
+  .service-card p {
+    font-size: 1rem;
+    color: var(--clr-gray-medium);
+    flex-grow: 1;
+  }
+  .service-price {
+    margin-top: 1rem;
+    font-weight: 700;
+    color: var(--clr-secondary);
+    font-size: 1.1rem;
+    user-select: none;
+  }
 
-        /* Header & Navigation */
-        header {
-            background-color: rgba(7, 10, 19, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-        }
-        .logo {
-            font-weight: 800;
-            font-size: 1.35rem;
-            color: var(--text-light);
-            text-decoration: none;
-            letter-spacing: -0.025em;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .logo span {
-            color: var(--primary);
-        }
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-        }
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.25s ease;
-        }
-        .nav-links a:hover {
-            color: var(--primary);
-        }
+  /* Booking Section */
+  section.booking {
+    background-color: var(--clr-white);
+    margin: 3rem 1rem 4rem;
+    border-radius: 12px;
+    padding: 3rem 2rem 2rem;
+    box-shadow: 0 10px 40px rgb(0 91 187 / 0.15);
+  }
+  section.booking h2 {
+    text-align: center;
+    font-weight: 700;
+    color: var(--clr-primary-dark);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  form.booking-form {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  .form-group {
+    flex: 1;
+    min-width: 150px;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+  .form-group:last-child {
+    margin-right: 0;
+  }
+  label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.35rem;
+    color: var(--clr-primary-dark);
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.45rem 0.6rem;
+    border-radius: 6px;
+    border: 1.5px solid var(--clr-gray-medium);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    font-family: var(--font-sans);
+  }
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="tel"]:focus,
+  input[type="date"]:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--clr-primary);
+    box-shadow: 0 0 6px var(--clr-primary-light);
+  }
+  textarea {
+    resize: vertical;
+    min-height: 90px;
+  }
+  button[type="submit"] {
+    width: 100%;
+    background-color: var(--clr-primary);
+    color: var(--clr-white);
+    border: none;
+    padding: 0.85rem 0;
+    font-weight: 700;
+    font-size: 1.2rem;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgb(0 91 187 / 0.4);
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  button[type="submit"]:hover,
+  button[type="submit"]:focus {
+    background-color: var(--clr-primary-dark);
+    outline: none;
+  }
+  .form-msg {
+    margin-top: 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+  }
+  .form-msg.success {
+    color: #27ae60;
+  }
+  .form-msg.error {
+    color: var(--clr-danger);
+  }
 
-        /* Hero Section styling */
-        .hero {
-            background: radial-gradient(circle at 50% -20%, rgba(59, 130, 246, 0.15) 0%, rgba(7, 10, 19, 0) 60%);
-            padding: 140px 0 100px 0;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .hero h1 {
-            font-size: 3.75rem;
-            font-weight: 800;
-            color: var(--text-light);
-            margin-bottom: 24px;
-            line-height: 1.15;
-            letter-spacing: -0.03em;
-        }
-        .hero h1 span {
-            background: linear-gradient(to right, #60a5fa, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .hero p {
-            font-size: 1.25rem;
-            max-width: 720px;
-            margin: 0 auto 48px auto;
-            color: var(--text-muted);
-            font-weight: 400;
-            line-height: 1.7;
-        }
-        
-        /* Buttons styling */
-        .btn-container {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 14px 28px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            border: none;
-        }
-        .btn-primary {
-            background-color: var(--primary);
-            color: #ffffff;
-            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
-        }
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-        }
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--text-light);
-            border: 1px solid var(--border-color);
-        }
-        .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.03);
-            border-color: #475569;
-            transform: translateY(-2px);
-        }
+  /* Trust Badges Section */
+  section.trust {
+    background: var(--clr-gray-light);
+    padding: 2rem 1rem 3rem;
+    text-align: center;
+  }
+  section.trust h2 {
+    font-size: 1.95rem;
+    margin-bottom: 2rem;
+    color: var(--clr-primary-dark);
+    font-weight: 700;
+  }
+  .trust-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem 2.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .badge {
+    background-color: var(--clr-white);
+    border-radius: 12px;
+    padding: 1.25rem 2rem;
+    box-shadow: 0 8px 24px rgb(0 91 187 / 0.12);
+    width: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    user-select: none;
+    transition: transform 0.3s ease;
+  }
+  .badge:hover,
+  .badge:focus-within {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 36px rgb(0 91 187 / 0.28);
+  }
+  .badge svg {
+    fill: var(--clr-primary);
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.75rem;
+  }
+  .badge p {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--clr-primary-dark);
+    margin: 0;
+  }
 
-        /* Section layout */
-        section {
-            padding: 100px 0;
-        }
-        .section-header {
-            text-align: center;
-            max-width: 650px;
-            margin: 0 auto 64px auto;
-        }
-        .section-tag {
-            color: var(--primary);
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            display: inline-block;
-            margin-bottom: 12px;
-        }
-        .section-title {
-            font-size: 2.25rem;
-            color: var(--text-light);
-            font-weight: 800;
-            letter-spacing: -0.025em;
-            margin-bottom: 16px;
-        }
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* Services Grid styling */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 32px;
-        }
-        .service-card {
-            background-color: var(--bg-card);
-            padding: 40px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        .service-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(to right, var(--primary), #60a5fa);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .service-card:hover {
-            transform: translateY(-6px);
-            border-color: #3b82f644;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-        }
-        .service-card:hover::before {
-            opacity: 1;
-        }
-        .service-icon {
-            width: 54px;
-            height: 54px;
-            background-color: rgba(59, 130, 246, 0.1);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            margin-bottom: 24px;
-        }
-        .service-icon svg {
-            width: 26px;
-            height: 26px;
-        }
-        .service-card h3 {
-            color: var(--text-light);
-            margin-bottom: 14px;
-            font-size: 1.35rem;
-            font-weight: 700;
-        }
-        .service-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Pricing Section styling */
-        #pricing {
-            background-color: var(--bg-darker);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 32px;
-            align-items: stretch;
-        }
-        .pricing-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 48px 36px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        .pricing-card.featured {
-            border-color: var(--primary);
-            box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1);
-            background-color: rgba(19, 27, 46, 0.8);
-        }
-        .badge {
-            position: absolute;
-            top: -14px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--primary), #2563eb);
-            color: #ffffff;
-            font-size: 0.75rem;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
-        }
-        .pricing-card h3 {
-            color: var(--text-light);
-            font-size: 1.4rem;
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-        .pricing-card .desc {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 24px;
-        }
-        .price {
-            font-size: 3rem;
-            color: var(--text-light);
-            font-weight: 800;
-            margin-bottom: 32px;
-            display: flex;
-            align-items: baseline;
-            letter-spacing: -0.03em;
-        }
-        .price span {
-            font-size: 1rem;
-            color: var(--text-muted);
-            font-weight: 400;
-            margin-left: 4px;
-        }
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 40px;
-        }
-        .pricing-features li {
-            margin-bottom: 16px;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .pricing-features li svg {
-            width: 18px;
-            height: 18px;
-            color: var(--primary);
-            flex-shrink: 0;
-        }
-
-        /* Contact Section styling */
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 64px;
-        }
-        .contact-info h3 {
-            color: var(--text-light);
-            font-size: 1.75rem;
-            margin-bottom: 16px;
-            font-weight: 700;
-        }
-        .contact-info p {
-            font-size: 1.05rem;
-            line-height: 1.6;
-            margin-bottom: 40px;
-        }
-        .contact-details {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-        }
-        .contact-item-icon {
-            width: 44px;
-            height: 44px;
-            background-color: rgba(59, 130, 246, 0.08);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            flex-shrink: 0;
-        }
-        .contact-item-icon svg {
-            width: 20px;
-            height: 20px;
-        }
-        .contact-item-text p:first-child {
-            font-weight: 600;
-            color: var(--text-light);
-            font-size: 0.95rem;
-            margin-bottom: 4px;
-        }
-        .contact-item-text p:last-child {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin: 0;
-        }
-        
-        /* Interactive Form */
-        .contact-form {
-            background-color: var(--bg-card);
-            padding: 48px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        .form-group {
-            margin-bottom: 24px;
-        }
-        .form-group label {
-            display: block;
-            color: var(--text-light);
-            margin-bottom: 8px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .form-control {
-            width: 100%;
-            padding: 14px;
-            background-color: var(--bg-darkest);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-light);
-            font-family: inherit;
-            font-size: 0.95rem;
-            transition: all 0.25s ease;
-        }
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px var(--accent-glow);
-        }
-        textarea.form-control {
-            resize: vertical;
-            min-height: 130px;
-        }
-
-        /* Footer styling */
-        footer {
-            background-color: var(--bg-darkest);
-            padding: 48px 0;
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-        }
-        footer p {
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Breakpoints */
-        @media (max-width: 968px) {
-            .contact-wrapper {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-        }
-        @media (max-width: 768px) {
-            html {
-                font-size: 15px;
-            }
-            .nav-container {
-                flex-direction: column;
-                justify-content: center;
-                gap: 16px;
-                height: auto;
-                padding: 16px 0;
-            }
-            .hero h1 {
-                font-size: 2.75rem;
-            }
-            .hero {
-                padding: 100px 0 60px 0;
-            }
-            .contact-form {
-                padding: 32px 24px;
-            }
-        }
-    </style>
+  /* Responsive tweaks */
+  @media (max-width: 640px) {
+    header.hero h1 {
+      font-size: 2rem;
+    }
+    section.services h2,
+    section.booking h2,
+    section.trust h2 {
+      font-size: 1.6rem;
+    }
+    .form-row {
+      flex-direction: column;
+    }
+    .form-group {
+      margin-right: 0 !important;
+    }
+    .trust-badges {
+      gap: 2rem 1.5rem;
+    }
+    .badge {
+      width: 110px;
+      padding: 1rem 1.2rem;
+    }
+  }
+</style>
 </head>
 <body>
 
-    <!-- Header Navigation -->
-    <header>
-        <div class="container nav-container">
-            <a href="#" class="logo">Volt<span>Shield</span></a>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+<header class="hero" role="banner">
+  <main>
+    <h1>VoltShield Compliance</h1>
+    <p class="subtitle">Electrical Safety Standards Compliance &amp; Inspection Services for Commercial &amp; Multi-Family Properties</p>
+    <button class="btn-primary" type="button" id="scrollToBookingBtn" aria-label="Book Your Inspection">Book Your Inspection</button>
+  </main>
+</header>
+
+<main role="main" aria-label="Main content">
+
+  <!-- Services Section -->
+  <section class="services" aria-labelledby="services-title">
+    <h2 id="services-title">Our Compliance Services</h2>
+    <div class="services-grid">
+      <article class="service-card" tabindex="0" aria-describedby="service1-desc service1-price">
+        <h3 id="service1-title">Multi-Family Rental Unit Inspection</h3>
+        <p id="service1-desc">Thorough visual inspection, breaker testing, and safety device assessment tailored for each rental unit to ensure full electrical compliance and occupant safety.</p>
+        <p id="service1-price" class="service-price">$250 - $350 <small>per rental unit</small></p>
+      </article>
+
+      <article class="service-card" tabindex="0" aria-describedby="service2-desc service2-price">
+        <h3 id="service2-title">Commercial Warehouse Panel Inspection</h3>
+        <p id="service2-desc">Comprehensive inspections including thermal imaging, breaker loading analysis, grounding &amp; bonding tests, and safety device functionality checks for commercial electrical panels or zones.</p>
+        <p id="service2-price" class="service-price">$650 - $900 <small>per panel / zone</small></p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Booking Form Section -->
+  <section class="booking" aria-labelledby="booking-title">
+    <h2 id="booking-title">Schedule an Inspection</h2>
+    <form id="bookingForm" class="booking-form" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fullName">Full Name <sup aria-label="required">*</sup></label>
+          <input type="text" id="fullName" name="fullName" required autocomplete="name" placeholder="John Doe" aria-required="true" />
+          <span class="error-msg" aria-live="polite" style="color:#e74c3c; font-size:.85rem; display:none;">Please enter your full name</span>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Expert Compliance for <span>VoltShield</span></h1>
-            <p>Delivering premier commercial electrical panel inspections, expert thermal mapping, and breaker loading analysis engineered to guarantee complete OSHA & NFPA 70E safety standard compliance.</p>
-            <div class="btn-container">
-                <a href="#contact" class="btn btn-primary">Book a Compliance Audit</a>
-                <a href="#pricing" class="btn btn-secondary">View Pricing Models</a>
-            </div>
+        <div class="form-group">
+          <label for="email">Email Address <sup aria-label="required">*</sup></label>
+          <input type="email" id="email" name="email" required autocomplete="email" placeholder="email@example.com" aria-required="true" />
+          <span class="error-msg" aria-live="polite" style="color:#e74c3c; font-size:.85rem; display:none;">Please enter a valid email address</span>
         </div>
-    </section>
+      </div>
 
-    <!-- Services Section -->
-    <section id="services">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Inspection Capabilities</span>
-                <h2 class="section-title">Diagnostic Compliance Services</h2>
-                <p class="section-subtitle">Prevent failures, mitigate fire risks, and secure clear documentation indicating code compliance.</p>
-            </div>
-            
-            <div class="services-grid">
-                <!-- Service 1: Thermal Mapping -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                        </svg>
-                    </div>
-                    <h3>Thermal Image Mapping</h3>
-                    <p>Using advanced thermography cameras, we reveal high-temperature failure patterns and loose terminations before causing operational damage.</p>
-                </div>
-
-                <!-- Service 2: Breaker Loading -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                        </svg>
-                    </div>
-                    <h3>Breaker Loading Analysis</h3>
-                    <p>Scientific monitoring of electrical load balances over phase variations. We assure current configurations are running within strict load rules.</p>
-                </div>
-
-                <!-- Service 3: Auditing -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                            <polyline points="14 2 14 8 20 8"/>
-                            <line x1="16" y1="13" x2="8" y2="13"/>
-                            <line x1="16" y1="17" x2="8" y2="17"/>
-                            <polyline points="10 9 9 9 8 9"/>
-                        </svg>
-                    </div>
-                    <h3>OSHA & NFPA 70E Audits</h3>
-                    <p>We supply complete, engineering-grade documentation so that your building remains secure against state inspections and hazard warnings.</p>
-                </div>
-            </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="phone">Phone Number <sup aria-label="required">*</sup></label>
+          <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(123) 456-7890" aria-required="true" pattern="^[\d\s\-\+\(\)]{7,15}$" />
+          <span class="error-msg" aria-live="polite" style="color:#e74c3c; font-size:.85rem; display:none;">Please enter a valid phone number</span>
         </div>
-    </section>
+        <div class="form-group">
+          <label for="serviceType">Service Type <sup aria-label="required">*</sup></label>
+          <select id="serviceType" name="serviceType" required aria-required="true">
+            <option value="" disabled selected>Choose a service</option>
+            <option value="multi-family">Multi-Family Rental Unit Inspection</option>
+            <option value="commercial-warehouse">Commercial Warehouse Panel Inspection</option>
+          </select>
+          <span class="error-msg" aria-live="polite" style="color:#e74c3c; font-size:.85rem; display:none;">Please select a service type</span>
+        </div>
+      </div>
 
-    <!-- Pricing Section -->
-    <section id="pricing">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Tiered Rates</span>
-                <h2 class="section-title">Transparent Pricing Models</h2>
-                <p class="section-subtitle">Scalable diagnostic inspection models fitting any industrial, multi-family, or office footprint.</p>
-            </div>
-            
-            <div class="pricing-grid">
-                <!-- Tier 1 -->
-                <div class="pricing-card">
-                    <div>
-                        <h3>Standard Audit</h3>
-                        <p class="desc">Engineered for retail stores & small facilities</p>
-                        <div class="price">$499<span>/one-time</span></div>
-                        <ul class="pricing-features">
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                                Up to 3 Electrical Panels
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                                Standard Visual Inspection
-                            </li>
+      <div class="form-row">
+        <div class="form-group" style="flex:1;">
+          <label for="inspectionDate">Preferred Inspection Date <sup aria-label="required">*</sup></label>
+          <input type="date" id="inspectionDate" name="inspectionDate" required aria-required="true" min="" />
+          <span class="error-msg" aria-live="polite" style="color:#e74c3c; font-size:.85rem; display:none;">Please select a valid date</span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group" style="flex:1;">
+          <label for="notes">Additional Notes / Requests</label>
+          <textarea id="notes" name="notes" placeholder="Any specific requirements or questions..."></textarea>
+        </div>
+      </div>
+
+      <button type="submit" aria-label="Submit booking form">Submit Booking</button>
+      <div role="alert" id="formMessage" class="form-msg" aria-live="polite" aria-atomic="true"></div>
+    </form>
+  </section>
+
+  <!-- Trust Badges Section -->
+  <section class="trust" aria-labelledby="trust-title">
+    <h2 id="trust-title">Our Trusted Safety Standards</h2>
+    <div class="trust-badges" role="list">
+      <div class="badge" role="listitem" tabindex="0" aria-label="Compliant with OSHA safety regulations">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 64 64" >
+          <circle cx="32" cy="32" r="30" stroke="var(--clr-primary)" stroke-width="3" fill="none"/>
+          <path d="M20 32l8 8 16-16" fill="none" stroke="var(--clr-primary)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <p>OSHA Compliance</p>
+      </div>
+      <div class="badge" role="listitem" tabindex="0" aria-label="Certified NICET electrical inspectors">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 64 64" >
+          <rect x="12" y="12" width="40" height="40" rx="8" ry="8" fill="none" stroke="var(--clr-primary)" stroke-width="3"/>
+          <path d="M20 32l8 8 16-16" fill="none" stroke="var(--clr-primary)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <p>NICET Certified Inspectors</p>
+      </div>
+      <div class="badge" role="listitem" tabindex="0" aria-label="Compliant with National Electrical Code (NEC)">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 64 64" >
+          <polygon points="32 12 44 52 20 52" fill="none" stroke="var(--clr-primary)" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M24 32h16" stroke="var(--clr-primary)" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <p>NEC Code Compliance</p>
+      </div>
+      <div class="badge" role="listitem" tabindex="0" aria-label="Adherence to NFPA 70E electrical safety standards">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 64 64" >
+          <circle cx="32" cy="32" r="20" fill="none" stroke="var(--clr-primary)" stroke-width="3"/>
+          <path d="M32 20v24" stroke="var(--clr-primary)" stroke-width="4" stroke-linecap="round"/>
+          <path d="M20 32h24" stroke="var(--clr-primary)" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <p>NFPA 70E Standards</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Scroll to booking form on button click
+  document.getElementById('scrollToBookingBtn').addEventListener('click', () => {
+    const bookingSection = document.getElementById('booking-title');
+    bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // To assist keyboard users focus on form first input
+    setTimeout(() => {
+      document.getElementById('fullName').focus();
+    }, 500);
+  });
+
+  // Set min attribute for date input to today
+  const inspectionDateInput = document.getElementById('inspectionDate');
+  function setMinDate() {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    inspectionDateInput.min = `${yyyy}-${mm}-${dd}`;
+  }
+  setMinDate();
+
+  // Form Validation and Submission
+  const form = document.getElementById('bookingForm');
+  const formMessage = document.getElementById('formMessage');
+  const fields = [
+    { id: 'fullName', validator: value => value.trim().length > 1, errorMsg: 'Please enter your full name' },
+    { id: 'email', validator: value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()), errorMsg: 'Please enter a valid email address' },
+    { id: 'phone', validator: value => /^[\d\s\-\+\(\)]{7,15}$/.test(value.trim()), errorMsg: 'Please enter a valid phone number' },
+    { id: 'serviceType', validator: value => value !== '', errorMsg: 'Please select a service type' },
+    { id: 'inspectionDate', validator: value => {
+      if (!value) return false;
+      const selected = new Date(value);
+      const now = new Date();
+      now.setHours(0,0,0,0);
+      return selected >= now;
+    }, errorMsg: 'Please select a valid date' },
+  ];
+
+  function resetErrors() {
+    fields.forEach(({id}) => {
+      const input = document.getElementById(id);
+      input.setAttribute('aria-invalid', 'false');
+      const errorSpan = input.parentElement.querySelector('.error-msg');
+      if (errorSpan) errorSpan.style.display = 'none';
+    });
+    formMessage.textContent = '';
+    formMessage.className = 'form-msg';
+  }
+  function showError(id, message) {
+    const input = document.getElementById(id);
+    input.setAttribute('aria-invalid', 'true');
+    const errorSpan = input.parentElement.querySelector('.error-msg');
+    if (errorSpan) {
+      errorSpan.textContent = message;
+      errorSpan.style.display = 'block';
+    }
+  }
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    resetErrors();
+    let isFormValid = true;
+
+    // Validate each field
+    fields.forEach(({id, validator, errorMsg}) => {
+      const el = document.getElementById(id);
+      const val = el.value;
+      if (!validator(val)) {
+        isFormValid = false;
+        showError(id, errorMsg);
+      }
+    });
+
+    if (!isFormValid) {
+      formMessage.textContent = 'Please fix the errors and try again.';
+      formMessage.classList.add('error');
+      return;
+    }
+
+    // Simulate form submission (no backend) with a delay
+    formMessage.textContent = 'Submitting your booking...';
+    formMessage.classList.remove('error');
+    formMessage.classList.remove('success');
+    formMessage.classList.add('loading');
+    form.querySelector('button[type=submit]').disabled = true;
+
+    setTimeout(() => {
+      formMessage.textContent = 'Thank you for scheduling your inspection! Our team will contact you shortly.';
+      formMessage.classList.remove('loading');
+      formMessage.classList.add('success');
+      form.reset();
+      form.querySelector('button[type=submit]').disabled = false;
+      // Reset date min attribute to today again (in case of date change)
+      setMinDate();
+    }, 1500);
+  });
+</script>
+
+</body>
+</html>
+```
+    
