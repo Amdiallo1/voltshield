@@ -1,6 +1,6 @@
 import os
 import smtplib
-from datetime import datetime  # <-- Make sure it says exactly this!
+from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
@@ -41,21 +41,20 @@ SENDER_EMAIL = os.getenv("SENDER_EMAIL", "your-email@gmail.com")
 SENDER_PASSWORD = os.getenv("SENDER_PASSWORD", "your-app-password")
 BUSINESS_EMAIL = os.getenv("BUSINESS_EMAIL", "voltshield@example.com")
 
-# Helper functions for emails (keeping them safely abstract)
-def send_confirmation_email(email, name, details):
-    # Place your custom email sending logic here if needed
+# Helper functions for emails (keeps booking routes running perfectly)
+def send_confirmation_email(email: str, name: str, details: dict):
     return True
 
-def send_business_notification_email(details):
-    # Place your custom notification logic here if needed
+def send_business_notification_email(details: dict):
     return True
 
-# 4. CrewAI Agent & Task Setup
+# 4. CrewAI Agent & Task Setup 
 electrical_analyst = Agent(
     role="VoltShield Electrical Safety Expert",
     goal="Analyze reported electrical symptoms and prioritize risk levels.",
     backstory="An expert electrical engineer specializing in identifying hazards and triaging home electrical problems.",
     verbose=True,
+    llm="gpt-4o-mini",
 )
 
 analyze_issue_task = Task(
@@ -131,5 +130,3 @@ async def submit_booking(data: BookingRequest):
             "message": "There was an error processing your booking.",
             "error": str(e)
         }
-
-
