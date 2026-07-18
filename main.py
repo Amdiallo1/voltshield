@@ -1,4 +1,5 @@
 import os
+import asyncio
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -42,11 +43,10 @@ def read_root():
 
 
 @app.post("/run-crew")
-def run_crew(request: CustomerRequest):
+async def run_crew(request: CustomerRequest):
     """
-    Triggers the CrewAI agent group to analyze the electrical issue.
-    Note: 'async' is intentionally omitted here to prevent CrewAI 
-    from clashing with FastAPI's asynchronous event loop.
+    Triggers the CrewAI agent group to analyze the electrical issue asynchronously.
+    Uses kickoff_async() to blend smoothly with FastAPI's event loop.
     """
     try:
         # 1. Define the Electrical Expert Agent
@@ -76,8 +76,9 @@ def run_crew(request: CustomerRequest):
             verbose=True
         )
         
-        # 4. Kick off processing synchronously in a dedicated thread worker pool
-        result = crew.kickoff()
+        # 4. Kick off processing ASYNCHRONOUSLY using CrewAI's async integration
+        # This prevents the "running event loop" conflict entirely
+        result = await crew.kickoff_async()
         
         # 5. Return clean structured JSON response back to client
         return {
