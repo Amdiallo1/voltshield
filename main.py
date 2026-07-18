@@ -20,3 +20,7 @@ async def run_crew(request: CustomerRequest):
     with open(f"{QUEUE_DIR}/{request_id}.json", "w") as f:
         json.dump(request.dict(), f)
     return {"status": "queued", "request_id": request_id}
+
+@app.get("/")
+def read_root():
+    return {"status": "online", "message": "VoltShield is active."}
