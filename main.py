@@ -21,17 +21,20 @@ class CustomerRequest(BaseModel):
     email: str
     issue_description: str
 
-# Create a global thread pool executor
 executor = ThreadPoolExecutor(max_workers=3)
 
 def execute_crew(customer_name, email, issue_description):
-    """This function handles the Crew setup and executes completely inside an isolated thread."""
+    # Fallback to check if key exists, defaults to dummy if missing to avoid crash before execution
+    if not os.environ.get("OPENAI_API_KEY"):
+        return "Error: OPENAI_API_KEY environment variable is not set on Render."
+
     analyst = Agent(
         role="Senior Electrical Triage Expert",
         goal="Analyze customer requests to determine project scope, required materials, and safety priorities.",
-        backstory="You are an expert electrician with decades of field experience. You look at client descriptions, identify core hazards (like exposed wiring or overload signs), and outline technical requirements.",
+        backstory="You are an expert electrician with decades of field experience. You look at client descriptions, identify core hazards and outline technical requirements.",
         verbose=True,
-        memory=False
+        memory=False,
+        llm="gpt-4o-mini"
     )
     
     analysis_task = Task(
@@ -45,7 +48,6 @@ def execute_crew(customer_name, email, issue_description):
     )
     
     crew = Crew(agents=[analyst], tasks=[analysis_task], verbose=True)
-    # Run synchronously inside the thread safely
     return crew.kickoff()
 
 @app.get("/")
@@ -55,10 +57,7 @@ def read_root():
 @app.post("/run-crew")
 async def run_crew(request: CustomerRequest):
     try:
-        # Get the current running event loop
         loop = asyncio.get_running_loop()
-        
-        # Offload the Crew execution to the thread pool executor entirely
         result = await loop.run_in_executor(
             executor, 
             execute_crew, 
@@ -66,8 +65,6 @@ async def run_crew(request: CustomerRequest):
             request.email, 
             request.issue_description
         )
-        
         return {"status": "success", "message": str(result)}
-        
     except Exception as e:
         return {"status": "error", "message": f"AI Crew failed to process your request: {str(e)}"}
