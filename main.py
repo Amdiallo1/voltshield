@@ -20,7 +20,7 @@ class Booking(BaseModel):
 def send_booking_email(booking: Booking):
     return resend.Emails.send({
         "from": "onboarding@resend.dev",
-        "to": "YOUR_EMAIL@EXAMPLE.COM", # Update this
+        "to": "amdiallo1@yandex.com", # Update this
         "subject": f"New Booking: {booking.serviceType}",
         "html": f"<p><strong>Name:</strong> {booking.fullName}<br><strong>Service:</strong> {booking.serviceType}</p>"
     })
