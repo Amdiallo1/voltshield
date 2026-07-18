@@ -12,16 +12,14 @@ class CustomerRequest(BaseModel):
 
 # 2. This is the new function that runs the AI in the background
 def run_ai_analysis(customer_name: str, email: str, issue: str):
-    print(f"Starting analysis for {customer_name}...")
-    
-    # --- PASTE YOUR CREWAI LOGIC HERE ---
-    # analyst = Agent(...)
-    # task = Task(...)
-    # crew = Crew(...)
-    # result = crew.kickoff()
-    # -------------------------------------
-    
-    print(f"Finished analysis for {customer_name}")
+    print("DEBUG: Entered the background task function!")
+    try:
+        # --- YOUR AGENT LOGIC HERE ---
+        print(f"Starting analysis for {customer_name}...")
+        # (Make sure your Agent/Task code is here)
+        
+    except Exception as e:
+        print(f"DEBUG: CRASHED with error: {e}")
 
 # 3. Your new Endpoint
 @app.post("/run-crew")
