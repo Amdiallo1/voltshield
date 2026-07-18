@@ -1,14 +1,13 @@
 import os
-import smtplib
-from email.message import EmailMessage
+import resend
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from crewai.llm import LLM
 
-# 1. Initialize FastAPI
+# Initialize
 app = FastAPI()
+resend.api_key = os.getenv("RESEND_API_KEY")
 
-# 2. Define Request Structure
+# Data Schema
 class Booking(BaseModel):
     fullName: str
     email: str
@@ -17,47 +16,22 @@ class Booking(BaseModel):
     inspectionDate: str
     notes: str
 
-# 3. Configure AI Model
-# Ensure OPENAI_API_KEY is set in your Render Environment Variables
-api_key = os.getenv("OPENAI_API_KEY", "")
-custom_llm = LLM(model="gpt-4o-mini", api_key=api_key)
+# Email Service Layer
+def send_booking_email(booking: Booking):
+    return resend.Emails.send({
+        "from": "onboarding@resend.dev",
+        "to": "YOUR_EMAIL@EXAMPLE.COM", # Update this
+        "subject": f"New Booking: {booking.serviceType}",
+        "html": f"<p><strong>Name:</strong> {booking.fullName}<br><strong>Service:</strong> {booking.serviceType}</p>"
+    })
 
-@app.get("/")
-def read_root():
-    return {"status": "online", "message": "VoltShield API is active"}
-
-# 4. Booking Endpoint with Error Handling
+# API Route
 @app.post("/submit-booking")
 async def submit_booking(booking: Booking):
-    # SMTP Configuration (Use Environment Variables for security!)
-    smtp_server = "smtp.yandex.com"
-    smtp_port = 465
-    sender_email = os.getenv("EMAIL_USER")  # Set these in Render Dashboard
-    password = os.getenv("EMAIL_PASS")      # Set these in Render Dashboard
-
     try:
-        # Construct Email
-        msg = EmailMessage()
-        msg["Subject"] = f"New Booking: {booking.serviceType}"
-        msg["From"] = sender_email
-        msg["To"] = sender_email
-        msg.set_content(
-            f"New Booking Details:\n\n"
-            f"Name: {booking.fullName}\n"
-            f"Email: {booking.email}\n"
-            f"Phone: {booking.phone}\n"
-            f"Service: {booking.serviceType}\n"
-            f"Date: {booking.inspectionDate}\n"
-            f"Notes: {booking.notes}"
-        )
-
-        # Send with Timeout
-        with smtplib.SMTP_SSL(smtp_server, smtp_port, timeout=10) as server:
-            server.login(sender_email, password)
-            server.send_message(msg)
-        
-        return {"status": "success", "message": "Booking received and email sent."}
-
+        send_booking_email(booking)
+        return {"status": "success"}
     except Exception as e:
-        print(f"CRITICAL ERROR: {e}") # This prints to Render Logs
-        raise HTTPException(status_code=500, detail=str(e))
+        # This keeps the error logged in Render but returns a clean response
+        print(f"DEBUG: Email failed - {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
