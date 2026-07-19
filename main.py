@@ -1,8 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-# --- IMPORTS START HERE ---
-from crewai import Agent, Task, Crew 
-# --- IMPORTS END HERE ---
+from crewai import Agent, Task, Crew
 
 app = FastAPI()
 
@@ -13,31 +11,36 @@ class CustomerRequest(BaseModel):
 
 @app.post("/run-crew")
 def run_crew(request: CustomerRequest):
-    print("DEBUG: Entered the synchronous function!")
+    # Safety: Define result as None first
+    result = None
     
     try:
-        # ------------------------------------------------------------
-        # PASTE YOUR AI LOGIC CODE EXACTLY BELOW THIS LINE:
-        # ------------------------------------------------------------
+        # Define the AI Agent
+        electrician = Agent(
+            role="Electrician",
+            goal="Provide safety assessment for electrical issues",
+            backstory="Expert electrician",
+            verbose=True
+        )
         
-        # Example:
-        # my_agent = Agent(role="Electrician", goal="Fix lights", ...)
-        # my_task = Task(description=request.issue_description, ...)
-        # my_crew = Crew(agents=[my_agent], tasks=[my_task])
-        # result = my_crew.kickoff()
+        # Define the Task
+        task = Task(
+            description=f"Issue reported: {request.issue_description}",
+            expected_output="Safety advice",
+            agent=electrician
+        )
         
-        # ------------------------------------------------------------
-        # PASTE YOUR AI LOGIC CODE EXACTLY ABOVE THIS LINE
-        # ------------------------------------------------------------
+        # Run the Crew
+        crew = Crew(agents=[electrician], tasks=[task])
+        result = crew.kickoff()
         
-        print(f"Successfully processed analysis for {request.customer_name}")
+        # Success response
         return {"status": "success", "result": str(result)}
         
     except Exception as e:
-        # This will print the error to your logs if something breaks
-        print(f"CRASH ERROR: {e}")
+        # If an error happens, return the error message (not 'result')
         return {"status": "error", "message": str(e)}
 
 @app.get("/")
 def read_root():
-    return {"status": "online", "message": "VoltShield is active."}
+    return {"status": "online"}
