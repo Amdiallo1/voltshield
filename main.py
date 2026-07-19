@@ -31,7 +31,7 @@ def run_crew(request: CustomerRequest):
         # ------------------------------------------------------------
         
         print(f"Successfully processed analysis for {request.customer_name}")
-        return {"status": "success", "message": "Analysis completed successfully."}
+        return {"status": "success", "result": str(result)}
         
     except Exception as e:
         # This will print the error to your logs if something breaks
