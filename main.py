@@ -1,4 +1,3 @@
-git add main.py
 git commit -m "Fix missing os import"
 git push
 import asyncio
