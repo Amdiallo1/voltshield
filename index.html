@@ -1,443 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>VoltShield Compliance - Electrical Safety Standards</title>
-<style>
-  :root {
-    --clr-primary: #005bbb;
-    --clr-primary-light: #2680eb;
-    --clr-primary-dark: #003f7f;
-    --clr-secondary: #ff7f50;
-    --clr-gray-light: #f7f9fc;
-    --clr-gray-medium: #7a869a;
-    --clr-gray-dark: #2c3e50;
-    --clr-white: #fff;
-    --clr-danger: #e74c3c;
-    --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --max-width: 1200px;
-  }
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    font-family: var(--font-sans);
-    background-color: var(--clr-gray-light);
-    color: var(--clr-gray-dark);
-    line-height: 1.6;
-  }
-  a {
-    color: var(--clr-primary-light);
-    text-decoration: none;
-  }
-  a:hover,
-  a:focus {
-    text-decoration: underline;
-  }
-  main {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 1rem 3rem;
-  }
-
-  /* Hero Section */
-  header.hero {
-    background: linear-gradient(135deg, var(--clr-primary-dark) 0%, var(--clr-primary) 100%);
-    color: var(--clr-white);
-    padding: 4rem 1rem 5rem;
-    text-align: center;
-  }
-  header.hero h1 {
-    font-size: 2.75rem;
-    margin-bottom: 0.5rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-  }
-  header.hero p.subtitle {
-    font-size: 1.25rem;
-    max-width: 700px;
-    margin: 0 auto 2rem;
-    line-height: 1.4;
-  }
-  header.hero .btn-primary {
-    display: inline-block;
-    background-color: var(--clr-secondary);
-    color: var(--clr-white);
-    font-weight: 600;
-    padding: 0.85rem 2.5rem;
-    border-radius: 40px;
-    font-size: 1.125rem;
-    cursor: pointer;
-    border: none;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 6px 12px rgb(255 127 80 / 0.4);
-    user-select: none;
-  }
-  header.hero .btn-primary:hover,
-  header.hero .btn-primary:focus {
-    background-color: #ff5722;
-    outline: none;
-  }
-
-  /* Services Section */
-  section.services {
-    background-color: var(--clr-white);
-    padding: 3rem 1rem 2rem;
-    margin-top: -3.5rem;
-    border-radius: 12px;
-    box-shadow: 0 16px 40px rgb(38 128 235 / 0.15);
-  }
-  section.services h2 {
-    text-align: center;
-    font-weight: 700;
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: var(--clr-primary-dark);
-  }
-  .services-grid {
-    display: grid;
-    gap: 2rem 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  }
-  .service-card {
-    background: var(--clr-gray-light);
-    border-radius: 12px;
-    padding: 1.75rem 1.5rem;
-    box-shadow: 0 4px 12px rgb(44 62 80 / 0.07);
-    transition: box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .service-card:hover,
-  .service-card:focus-within {
-    box-shadow: 0 8px 24px rgb(38 128 235 / 0.3);
-  }
-  .service-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.75rem;
-    color: var(--clr-primary-dark);
-  }
-  .service-card p {
-    font-size: 1rem;
-    color: var(--clr-gray-medium);
-    flex-grow: 1;
-  }
-  .service-price {
-    margin-top: 1rem;
-    font-weight: 700;
-    color: var(--clr-secondary);
-    font-size: 1.1rem;
-    user-select: none;
-  }
-
-  /* Booking Section */
-  section.booking {
-    background-color: var(--clr-white);
-    margin: 3rem 1rem 4rem;
-    border-radius: 12px;
-    padding: 3rem 2rem 2rem;
-    box-shadow: 0 10px 40px rgb(0 91 187 / 0.15);
-  }
-  section.booking h2 {
-    text-align: center;
-    font-weight: 700;
-    color: var(--clr-primary-dark);
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-  }
-  form.booking-form {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  .form-row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
-  }
-  .form-group {
-    flex: 1;
-    min-width: 150px;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
-  }
-  .form-group:last-child {
-    margin-right: 0;
-  }
-  label {
-    display: block;
-    font-weight: 600;
-    font-size: 0.95rem;
-    margin-bottom: 0.35rem;
-    color: var(--clr-primary-dark);
-  }
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="date"],
-  select,
-  textarea {
-    width: 100%;
-    padding: 0.45rem 0.6rem;
-    border-radius: 6px;
-    border: 1.5px solid var(--clr-gray-medium);
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-    font-family: var(--font-sans);
-  }
-  input[type="text"]:focus,
-  input[type="email"]:focus,
-  input[type="tel"]:focus,
-  input[type="date"]:focus,
-  select:focus,
-  textarea:focus {
-    outline: none;
-    border-color: var(--clr-primary);
-    box-shadow: 0 0 6px var(--clr-primary-light);
-  }
-  textarea {
-    resize: vertical;
-    min-height: 90px;
-  }
-  button[type="submit"] {
-    width: 100%;
-    background-color: var(--clr-primary);
-    color: var(--clr-white);
-    border: none;
-    padding: 0.85rem 0;
-    font-weight: 700;
-    font-size: 1.2rem;
-    border-radius: 40px;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgb(0 91 187 / 0.4);
-    transition: background-color 0.3s ease;
-    user-select: none;
-  }
-  button[type="submit"]:hover,
-  button[type="submit"]:focus {
-    background-color: var(--clr-primary-dark);
-    outline: none;
-  }
-  .form-msg {
-    margin-top: 1rem;
-    font-weight: 600;
-    font-size: 1rem;
-    text-align: center;
-  }
-  .form-msg.success {
-    color: #27ae60;
-  }
-  .form-msg.error {
-    color: var(--clr-danger);
-  }
-
-  /* Trust Badges Section */
-  section.trust {
-    background: var(--clr-gray-light);
-    padding: 2rem 1rem 3rem;
-    text-align: center;
-  }
-  section.trust h2 {
-    font-size: 1.95rem;
-    margin-bottom: 2rem;
-    color: var(--clr-primary-dark);
-    font-weight: 700;
-  }
-  .trust-badges {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 3rem 2.5rem;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .badge {
-    background-color: var(--clr-white);
-    border-radius: 12px;
-    padding: 1.25rem 2rem;
-    box-shadow: 0 8px 24px rgb(0 91 187 / 0.12);
-    width: 140px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    user-select: none;
-    transition: transform 0.3s ease;
-  }
-  .badge:hover,
-  .badge:focus-within {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 36px rgb(0 91 187 / 0.28);
-  }
-  .badge svg {
-    fill: var(--clr-primary);
-    width: 48px;
-    height: 48px;
-    margin-bottom: 0.75rem;
-  }
-  .badge p {
-    font-weight: 700;
-    font-size: 1rem;
-    color: var(--clr-primary-dark);
-    margin: 0;
-  }
-
-  /* Responsive tweaks */
-  @media (max-width: 640px) {
-    header.hero h1 {
-      font-size: 2rem;
-    }
-    section.services h2,
-    section.booking h2,
-    section.trust h2 {
-      font-size: 1.6rem;
-    }
-    .form-row {
-      flex-direction: column;
-    }
-    .form-group {
-      margin-right: 0 !important;
-    }
-    .trust-badges {
-      gap: 2rem 1.5rem;
-    }
-    .badge {
-      width: 110px;
-      padding: 1rem 1.2rem;
-    }
-  }
-</style>
-</head>
-<body>
-
-<header class="hero" role="banner">
-  <main>
-    <h1>VoltShield Compliance</h1>
-    <p class="subtitle">Electrical Safety Standards Compliance &amp; Inspection Services for Commercial &amp; Multi-Family Properties</p>
-    <button class="btn-primary" type="button" id="scrollToBookingBtn" aria-label="Book Your Inspection">Book Your Inspection</button>
-  </main>
-</header>
-
-<main role="main" aria-label="Main content">
-
-  <!-- Services Section -->
-  <section class="services" aria-labelledby="services-title">
-    <h2 id="services-title">Our Compliance Services</h2>
-    <div class="services-grid">
-      <article class="service-card" tabindex="0" aria-describedby="service1-desc service1-price">
-        <h3 id="service1-title">Multi-Family Rental Unit Inspection</h3>
-        <p id="service1-desc">Thorough visual inspection, breaker testing, and safety device assessment tailored for each rental unit to ensure full electrical compliance and occupant safety.</p>
-        <p id="service1-price" class="service-price">$250 - $350 <small>per rental unit</small></p>
-      </article>
-
-      <article class="service-card" tabindex="0" aria-describedby="service2-desc service2-price">
-        <h3 id="service2-title">Commercial Warehouse Panel Inspection</h3>
-        <p id="service2-desc">Comprehensive inspections including thermal imaging, breaker loading analysis, grounding &amp; bonding tests, and safety device functionality checks for commercial electrical panels or zones.</p>
-        <p id="service2-price" class="service-price">$650 - $900 <small>per panel / zone</small></p>
-      </article>
-    </div>
-  </section>
-
-  <!-- Booking Form Section -->
-  <section class="booking" aria-labelledby="booking-title">
-    <h2 id="booking-title">Schedule an Inspection</h2>
-    <form id="bookingForm" class="booking-form" novalidate>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="fullName">Full Name <sup aria-label="required">*</sup></label>
-          <input type="text" id="fullName" name="fullName" required autocomplete="name" placeholder="John Doe" aria-required="true" />
-          <span class="error-msg" aria-live="polite" style="color:#e74c3c; font-size:.85rem; display:none;">Please enter your full name</span>
-        </div>
-        <div class="form-group">
-          <label for="email">Email Address <sup aria-label="required">*</sup></label>
-          <input type="email" id="email" name="email" required autocomplete="email" placeholder="email@example.com" aria-required="true" />
-          <span class="error-msg" aria-live="polite" style="color:#e74c3c; font-size:.85rem; display:none;">Please enter a valid email address</span>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="phone">Phone Number <sup aria-label="required">*</sup></label>
-          <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(123) 456-7890" aria-required="true" pattern="^[\d\s\-\+\(\)]{7,15}$" />
-          <span class="error-msg" aria-live="polite" style="color:#e74c3c; font-size:.85rem; display:none;">Please enter a valid phone number</span>
-        </div>
-        <div class="form-group">
-          <label for="serviceType">Service Type <sup aria-label="required">*</sup></label>
-          <select id="serviceType" name="serviceType" required aria-required="true">
-            <option value="" disabled selected>Choose a service</option>
-            <option value="multi-family">Multi-Family Rental Unit Inspection</option>
-            <option value="commercial-warehouse">Commercial Warehouse Panel Inspection</option>
-          </select>
-          <span class="error-msg" aria-live="polite" style="color:#e74c3c; font-size:.85rem; display:none;">Please select a service type</span>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group" style="flex:1;">
-          <label for="inspectionDate">Preferred Inspection Date <sup aria-label="required">*</sup></label>
-          <input type="date" id="inspectionDate" name="inspectionDate" required aria-required="true" min="" />
-          <span class="error-msg" aria-live="polite" style="color:#e74c3c; font-size:.85rem; display:none;">Please select a valid date</span>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group" style="flex:1;">
-          <label for="notes">Additional Notes / Requests</label>
-          <textarea id="notes" name="notes" placeholder="Any specific requirements or questions..."></textarea>
-        </div>
-      </div>
-
-      <button type="submit" aria-label="Submit booking form">Submit Booking</button>
-      <div role="alert" id="formMessage" class="form-msg" aria-live="polite" aria-atomic="true"></div>
-    </form>
-  </section>
-
-  <!-- Trust Badges Section -->
-  <section class="trust" aria-labelledby="trust-title">
-    <h2 id="trust-title">Our Trusted Safety Standards</h2>
-    <div class="trust-badges" role="list">
-      <div class="badge" role="listitem" tabindex="0" aria-label="Compliant with OSHA safety regulations">
-        <svg aria-hidden="true" focusable="false" viewBox="0 0 64 64" >
-          <circle cx="32" cy="32" r="30" stroke="var(--clr-primary)" stroke-width="3" fill="none"/>
-          <path d="M20 32l8 8 16-16" fill="none" stroke="var(--clr-primary)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <p>OSHA Compliance</p>
-      </div>
-      <div class="badge" role="listitem" tabindex="0" aria-label="Certified NICET electrical inspectors">
-        <svg aria-hidden="true" focusable="false" viewBox="0 0 64 64" >
-          <rect x="12" y="12" width="40" height="40" rx="8" ry="8" fill="none" stroke="var(--clr-primary)" stroke-width="3"/>
-          <path d="M20 32l8 8 16-16" fill="none" stroke="var(--clr-primary)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <p>NICET Certified Inspectors</p>
-      </div>
-      <div class="badge" role="listitem" tabindex="0" aria-label="Compliant with National Electrical Code (NEC)">
-        <svg aria-hidden="true" focusable="false" viewBox="0 0 64 64" >
-          <polygon points="32 12 44 52 20 52" fill="none" stroke="var(--clr-primary)" stroke-width="3" stroke-linejoin="round"/>
-          <path d="M24 32h16" stroke="var(--clr-primary)" stroke-width="4" stroke-linecap="round"/>
-        </svg>
-        <p>NEC Code Compliance</p>
-      </div>
-      <div class="badge" role="listitem" tabindex="0" aria-label="Adherence to NFPA 70E electrical safety standards">
-        <svg aria-hidden="true" focusable="false" viewBox="0 0 64 64" >
-          <circle cx="32" cy="32" r="20" fill="none" stroke="var(--clr-primary)" stroke-width="3"/>
-          <path d="M32 20v24" stroke="var(--clr-primary)" stroke-width="4" stroke-linecap="round"/>
-          <path d="M20 32h24" stroke="var(--clr-primary)" stroke-width="4" stroke-linecap="round"/>
-        </svg>
-        <p>NFPA 70E Standards</p>
-      </div>
-    </div>
-  </section>
-
-</main>
-
 <script>
   // Scroll to booking form on button click
   document.getElementById('scrollToBookingBtn').addEventListener('click', () => {
     const bookingSection = document.getElementById('booking-title');
     bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    // To assist keyboard users focus on form first input
     setTimeout(() => {
       document.getElementById('fullName').focus();
     }, 500);
@@ -481,6 +46,7 @@
     formMessage.textContent = '';
     formMessage.className = 'form-msg';
   }
+
   function showError(id, message) {
     const input = document.getElementById(id);
     input.setAttribute('aria-invalid', 'true');
@@ -491,12 +57,11 @@
     }
   }
 
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     resetErrors();
     let isFormValid = true;
 
-    // Validate each field
     fields.forEach(({id, validator, errorMsg}) => {
       const el = document.getElementById(id);
       const val = el.value;
@@ -512,24 +77,44 @@
       return;
     }
 
-    // Simulate form submission (no backend) with a delay
-    formMessage.textContent = 'Submitting your booking...';
-    formMessage.classList.remove('error');
-    formMessage.classList.remove('success');
-    formMessage.classList.add('loading');
-    form.querySelector('button[type=submit]').disabled = true;
+    // Prepare payload for backend
+    const payload = {
+      customer_name: document.getElementById('fullName').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      issue_description: `Service: ${document.getElementById('serviceType').value} | Date: ${document.getElementById('inspectionDate').value} | Phone: ${document.getElementById('phone').value} | Notes: ${document.getElementById('notes').value}`
+    };
 
-    setTimeout(() => {
-      formMessage.textContent = 'Thank you for scheduling your inspection! Our team will contact you shortly.';
-      formMessage.classList.remove('loading');
-      formMessage.classList.add('success');
-      form.reset();
-      form.querySelector('button[type=submit]').disabled = false;
-      // Reset date min attribute to today again (in case of date change)
-      setMinDate();
-    }, 1500);
+    formMessage.textContent = 'Processing AI analysis and submitting request...';
+    formMessage.classList.remove('error', 'success');
+    const submitBtn = form.querySelector('button[type=submit]');
+    submitBtn.disabled = true;
+
+    try {
+      const response = await fetch("https://voltshield.onrender.com/run-crew", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        formMessage.textContent = 'Success! Your inspection has been scheduled and the AI analysis report was sent.';
+        formMessage.classList.add('success');
+        form.reset();
+        setMinDate();
+      } else {
+        formMessage.textContent = 'Error: ' + (data.detail || 'Failed to process request.');
+        formMessage.classList.add('error');
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+      formMessage.textContent = 'Network error. Please check your connection and try again.';
+      formMessage.classList.add('error');
+    } finally {
+      submitBtn.disabled = false;
+    }
   });
 </script>
-
-</body>
-</html>
