@@ -13,7 +13,11 @@ app = FastAPI(title="VoltShield API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://voltshield.onrender.com",  # Production domain
+        "http://localhost:8000",           # Local testing
+        "http://127.0.0.1:8000"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
