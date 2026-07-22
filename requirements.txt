@@ -4,3 +4,4 @@ resend
 pydantic
 crewai
 openai
+resend
