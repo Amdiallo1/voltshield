@@ -24,15 +24,13 @@ class CustomerRequest(BaseModel):
     email: str
     issue_description: str
 
-# --- ADDED: Email notification function ---
+# --- UPDATED: Email notification function using Resend ---
 def send_owner_email(request: CustomerRequest):
-    sender_email = "amdiallo1@yandex.com"
-    app_password = "dzjymhhiboieotiw"  # Your Yandex App Password
-    owner_email = "amdiallo1@yandex.com"
-
-    msg = MIMEText(
+    owner_email = os.environ.get("OWNER_EMAIL", "amdiallo1@yandex.com")
+    
+    email_content = (
         f"========================================\n"
-        f"   VOLTSHIELD COMPLIANCE INSPECTION\n"
+        f"    VOLTSHIELD COMPLIANCE INSPECTION\n"
         f"========================================\n\n"
         f"A new inspection request has been submitted for a commercial or multi-family property.\n\n"
         f"• Customer Name: {request.customer_name}\n"
@@ -42,14 +40,15 @@ def send_owner_email(request: CustomerRequest):
         f"----------------------------------------\n"
         f"CrewAI analysis is processing in the background."
     )
-    msg["Subject"] = f"[VoltShield Compliance] Inspection Request: {request.customer_name}"
-    msg["From"] = sender_email
-    msg["To"] = owner_email
 
-    with smtplib.SMTP_SSL("smtp.yandex.com", 465) as server:
-        server.login(sender_email, app_password)
-        server.sendmail(sender_email, owner_email, msg.as_string())
-
+    params = {
+        "from": "VoltShield <onboarding@resend.dev>",
+        "to": [owner_email],
+        "subject": f"New VoltShield Request from {request.customer_name}",
+        "text": email_content,
+    }
+    resend.Emails.send(params)  # <--- MAKE SURE THIS LINE IS HERE
+   
 # 1. This route keeps Render happy (fixes the 404 health check)
 @app.get("/")
 def read_root():
