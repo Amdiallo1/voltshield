@@ -25,7 +25,6 @@ class CustomerRequest(BaseModel):
     email: str
     issue_description: str
 
-# --- UPDATED: Email notification function using Resend ---
 def send_owner_email(request: CustomerRequest):
     owner_email = os.environ.get("OWNER_EMAIL", "amdiallo1@yandex.com")
     
@@ -50,6 +49,28 @@ def send_owner_email(request: CustomerRequest):
     }
     resend.Emails.send(params)
 
+def run_crew_analysis(request: CustomerRequest):
+    analyst = Agent(
+        role="Expert Electrician",
+        goal="Provide safety and scope analysis",
+        backstory="Expert with 30 years experience",
+        llm="gpt-4o-mini"
+    )
+
+    task = Task(
+        description=f"Analyze electrical safety for: {request.issue_description}",
+        expected_output="Professional safety evaluation and steps",
+        agent=analyst
+    )
+
+    crew = Crew(
+        agents=[analyst],
+        tasks=[task],
+        verbose=True
+    )
+
+    return crew.kickoff()
+
 # 1. This route keeps Render happy
 @app.get("/")
 def read_root():
@@ -60,29 +81,8 @@ def read_root():
 async def run_crew_endpoint(request: CustomerRequest):
     try:
         await asyncio.to_thread(send_owner_email, request)
-
-        analyst = Agent(
-            role="Expert Electrician",
-            goal="Provide safety and scope analysis",
-            backstory="Expert with 30 years experience",
-            llm="gpt-4o-mini"
-        )
-
-        task = Task(
-            description=f"Analyze electrical safety for: {request.issue_description}",
-            expected_output="Professional safety evaluation and steps",
-            agent=analyst
-        )
-
-        crew = Crew(
-            agents=[analyst],
-            tasks=[task],
-            verbose=True
-        )
-
-        result = crew.kickoff()
+        result = await asyncio.to_thread(run_crew_analysis, request)
         return {"status": "success", "analysis": str(result)}
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-    
